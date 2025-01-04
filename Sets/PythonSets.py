@@ -80,3 +80,46 @@ set3 = {True, False, False}
 # NOTE: a set CAN contain DIFFERENT data types:
 # example: (a set with strings, integers, and boolean values)
 aset1 = {"abc", 34, True, 40, "male"}
+
+
+'''
+TYPE()
+- From Python's perspective, sets are defined as objects with the data
+  type 'set'
+<class 'set'>
+example: (what is the data type of a set)
+'''
+myset2 = {"apple", "banana", "cherry"}
+print(type(myset2))
+    # this will print 'String'
+    # since the set only contains only strings
+
+'''
+THE SET() CONSTRUCTOR
+- It is also possible to use the set() constructor to make a set.
+example: (using the set() constructor to make a set)
+'''
+thisset3 = set(("apple", "banana", "cherry"))  # NOTE: the double round-brackets
+print(thisset3)
+
+
+'''
+PYTHON COLLECTIONS (ARRAYS)
+- There are four collection data types in the Python programming language:
+    - LIST: is a collection which is ordered and changeable. Allows duplicate members
+    - TUPLE: is a collection which is ordered and unchangeable. Allows duplicate members
+    - SET: is a collection which is unordered, unchangeable, and unindexed. 
+        no duplicate members.
+    - DICTIONARY: is a collection which is ordered and changeable. No duplicate members
+    
+
+- Set items are unchangeable, but you can remove items and add new items
+- When choosing a collection type, it is useful to understand the properties
+  of that type. Choosing the right type for a particular data set could mean
+  retention of meaning, and, it could mean an increase in efficiency or security. 
+'''
+
+# EXERCISE: which one of these is a set
+# myset = ('apple', 'banana', 'cherry')
+# myset = ['apple', 'banana', 'cherry']
+# myset = {'apple', 'banana', 'cherry'} # correct answer
