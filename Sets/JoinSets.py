@@ -195,4 +195,23 @@ lset2 = {"google", "microsoft", "apple"}
 lset3 = lset1 ^ lset2
 print(lset3)
     # this will now hold: {'banana', 'cherryy', 'google', 'microsoft'}
-# NOTE: the ^ operator only allows you to join 
+# NOTE: the ^ operator only allows you to join sets with sets, and 
+#       NOT with other data types like you can with the 
+#       symmetric_differene method. 
+
+# it looks like whenever you use the shortcuts, you can only use them 
+# with sets, not with differing data types
+
+
+# The symmetric_dfifference_update() method will also keep all the 
+# duplicates but it will change the origional set instead of returing a new set
+# example: (use the symmetric_difference_update() method to keep
+#           the items that are not present in both sets)
+mset1 = {"apple", "banana", "cherry"}
+mset2 = {"google", "microsoft", "apple"}
+mset1.symmetric_difference_update(mset2)
+
+# EXERCISE: what is the correct syntax for joining nset1 and nset2 into nset3
+# nset3 = join(nset1, nset2)
+# nset3 = nset1 + nset2
+# nset3 = nset1.union(nset2)  # correct
