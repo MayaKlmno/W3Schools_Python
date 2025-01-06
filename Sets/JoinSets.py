@@ -88,3 +88,111 @@ cset1.update(cset2)
 print(cset1)
     # now cset1 will contain items from cset1 and cset2
 # NOTE: both union() and update() will exclude any duplicate items
+
+'''
+INTERSECTION:
+- keep ONLY the duplicates
+- The intersection() method will return a new set, that only contains the items
+  that are present in both sets. 
+'''
+# example:(join dset1 and dset2, but only keep the duplicates)
+dset1 = {"apple", "banana", "cherry"}
+dset2 = {"google", "microsoft", "apple"}
+dset3 = dset1.intersection(dset2)
+
+# You can use the & operator instead of the intersection() method,
+# and you will get the same result. 
+# the & and intersection() method are the same/do the same thing
+
+# example: (use & to join two sets)
+eset1 = {"apple", "microsoft", "apple"}
+eset2 = {"google", "microsoft", "apple"}
+eset3 = eset1 & eset2
+print(eset3)
+# NOTE: the & operator only allows you to join sets with sets, and 
+#       not with other data types like you can with the intersection()
+#       methods
+
+
+# The intersection_update() method will also keep ONLY the duplicates,
+# but it will change the origional set instead of returning a new set
+    # intersection_update() and intersection() method commonality and differences
+        # intersection_update() change the origional set
+        # intersection() needs/makes a new set
+
+# example: (keep the items that exist in both fset1 and fset2)
+fset1 = {"apple", "banana", "cherry"}
+fset2 = {"google", "microsoft", "apple"}
+fset1.intersection_update(fset2)
+print(fset1)
+    # see that fset1 is now changed
+    
+# The values True and 1 are considered the same value.
+# The same goes for False and 0
+# example: (join sets that contain the values True, False, 1, and 0,
+#           and see what is considered as duplicates)
+gset1 = {"apple", 1, "banana", 0, "cherry"}
+gset2 = {False, "google", 1, "apple", 2, True}
+gset3 = gset1.intersection(gset2)
+print("this is what gset3 now holds: ")
+print(gset3)
+    # what this set prints: {False, 1, 'apple'}
+
+'''
+DIFFERENCE:
+- The difference() method will return a new set that will contain
+  only the items from the first set that are not present
+  in the other set. 
+'''
+# example: (keep all items from hset1 that are not in hset2)
+hset1 = {"apple", "banana", "cherry"}
+hset2 = {"google", "microsoft", "apple"}
+hset3 = hset1.difference(hset2)
+print(hset3)
+    # hset3 will now contain {'banana', 'cherry'}
+
+# You can use the - operator instead of the difference() method, 
+#  and you will get the same resutl
+# example: (use - to join two sets)
+iset1 = {"apple", "banana", "cherry"}
+iset2 = {"google", "microsoft", "apple"}
+iset3 = iset1 - iset2
+print(iset3)
+    # this does the same thing as differenct
+# NOTE: the - operator only allows you to join sets with sets, and
+#       not with other data types like you can with the difference()
+#       method
+
+# the difference_update() method will also keep the items from the first
+# set that are not in the other set, but it will change the origional
+# set instead of returning the new set. 
+# example: (use the difference_update() method to keep the items that
+#           are not present in both sets)
+jset1 = {"apple", "banana", "cherry"}
+jset2 = {"google", "microsoft" , "apple"}
+jset1.difference_update(jset2)
+print(jset1)
+    # NOTICE: whenever you use _update() it will change the origional
+    # set not, create the new one
+
+'''
+SYMMETRIC DIFFERENCES:
+- The symmetric_difference() method will keep only the elemetns
+  that are NOT present in both sets
+'''
+# example: (keep the items that are not present in both sets)
+kset1 = {"apple", "banana", "cherry"}
+kset2 = {"google", "microsoft", "apple"}
+kset3 = kset1.symmetric_difference(kset2)
+print(kset3)
+    # this will now hold: {'banana', 'cherryy', 'google', 'microsoft'}
+
+# you can use the ^ operator instead of the symmertic_difference() method,
+# and you will get the same result
+# example: (use ^ to join two sets)
+lset1 = {"apple", "banana", "cherry"}
+lset2 = {"google", "microsoft", "apple"}
+lset3 = lset1 ^ lset2
+print(lset3)
+    # this will now hold: {'banana', 'cherryy', 'google', 'microsoft'}
+# NOTE: the ^ operator only allows you to join 
