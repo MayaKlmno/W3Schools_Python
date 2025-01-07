@@ -92,5 +92,41 @@ print(w)
 # example: (make a change in the origional dictionary, and see that the
 #           items list gets updated as well)
 car4 = {
-    "brand"
+    "brand" : "Ford",
+    "model" : "Mustang",
+    "year" : 1964
 }
+c = car4.items()
+print(c)   # before the change
+car4["year"] = 2025
+print(c)  # after the change
+
+# example: (add a new item to the origional dictionary, and see that the 
+#           items list gets updated as well)
+car5 = {
+    "brand" : "Ford",
+    "model" : "Mustang",
+    "year" : 1964
+}
+d = car5.items()
+print(d)   # before the change
+car5["color"] = "red"
+print(d)    # after the change
+
+'''
+CHECK IF THE KEY EXISTS:
+- To determine if a specified key is present in a dictionary use the 
+  in keyword
+'''
+# example: (check if "model" is present in the dictionary)
+thisdict2 = {
+    "brand" : "Ford",
+    "model" : "Mustang",
+    "year" : 1964
+}
+if "model" in thisdict2:
+    print("Yes, 'model' is one of the keys in the thisdict2 dictionary")
+
+# EXERCISE: True or False, You can access item values by referring to 
+#           the key name
+#           True
