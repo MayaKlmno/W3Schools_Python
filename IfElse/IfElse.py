@@ -89,3 +89,40 @@ SHORT HAND IF... ELSE:
 - if you have only one statement to execute, on for if, and one for else,
   you can put it all on the same line
 '''
+# example: (one line if else statement)
+aa = 2
+bb = 330
+print("A") if aa > bb else print("B")
+
+## This technique is known as ternary operators, or conditional expressions
+# You can also have multiple else statements on the same line:
+
+# example: (one line if else statement, with 3 conditions)
+aaa = 330
+bbb = 330
+print("A") if aaa > bbb else print("=") if aaa == bbb else print("B")
+
+'''
+AND:
+- The and keyword is a logical operator, and is used to combine conditional
+  statements
+'''
+# example: (Test if a is greater than b, AND if c is greater than a)
+a1 = 200
+b1 = 33
+c1 = 500
+if a1 > b1 and c1 > a1:
+    print("Both conditions are True")
+    
+'''
+OR:
+- The or keyword is a logical operator, and is used to combine conditonal
+  statements
+'''
+# example: (test if a is greater than b, OR if a is greater than c)
+a2 = 200
+b2 = 33
+c2 = 500
+if a2>b2 or a2>c2:
+    print("At leas one of the conditions is True")
+
