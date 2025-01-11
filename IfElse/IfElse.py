@@ -126,3 +126,35 @@ c2 = 500
 if a2>b2 or a2>c2:
     print("At leas one of the conditions is True")
 
+'''
+NESTED IF:
+- You can have if statements inside if statements, this is called nested if statements
+'''
+# example:
+x = 41
+if x > 10:
+    print("Above 10,")
+    if x > 20:
+        print(" and also above 20!")
+    else:
+        print(" but not above 20")
+        
+'''
+THE PASS STATEMENT:
+- if statements cannot be empy, but if you for some reason have an if statement with no content,
+  put in the PASS statement to avoid getting an error
+'''
+# example:
+xx = 33
+yy = 200
+if xx > yy:
+    pass
+
+# EXERCISE:
+xxx = 5
+yyy = 8
+if xxx>yyy:
+    print("Hello")
+else:
+    print("Welcome")
+# this will print "Welcome"
