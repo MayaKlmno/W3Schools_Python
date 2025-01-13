@@ -20,3 +20,45 @@ while i < 6:
 
 # The while loop requires relevent variables to be ready, in this example we need
 # to define an indexing variable, i, which we set to 1
+
+'''
+THE BREAK STATEMENT:
+- With the break statement we can stop the loop even if the while condition
+  is true:
+'''
+# example: (exit the loop when i = 3)
+x = 1
+while x < 6:
+    print(x)
+    if x == 3:
+        break
+    x += 1
+
+'''
+THE CONTINUE STAEMENT:
+- With the continue statement we can stop the current iteration, and continue
+  with the next:
+'''
+# example: (continue to the next iteration if i = 3)
+y = 0
+while y < 6:
+    y += 1
+    if y == 3:
+        continue
+    print(y)
+
+'''
+THE ELSE STATEMENT:
+- print a message once the condition is false
+'''
+z = 1
+while z < 6:
+    print(z)
+    z += 1
+else:
+    print("i is no longer less than 6")
+    
+## EXERCISE: which statement is a correct syntax to break out of a loop
+# end
+# return
+# break  ## correct
