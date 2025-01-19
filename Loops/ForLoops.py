@@ -104,3 +104,30 @@ for x in range(6):
     print(x)
 else:
     print("finally finished")
+    
+'''
+NESTED LOOPS:
+- A nested loop is a loop inside a loop.
+- the "inner loop" will be executed one more time for each iteration of the "outer loop"
+'''
+# example: (print each adjetive for every fruit)
+adj = ["red", "big", "tasty"]
+fruits5 = ["apple", "banana", "cherry"]
+for x in adj:
+    for y in fruits5:
+        print(x, y)
+
+'''
+THE PASS STATEMENT:
+- for loops cannot be empty, but if you for some reason have a for loop with no content,
+  put in the pass statement to avoid getting an error
+'''
+for x in [0, 1, 2]:
+    pass
+
+# EXERCISE: what will be the result of the following code:
+for x in range(3):
+    print(x)
+# 1: 0 1 2  # correct
+# 2: 0 1 2 3
+# 3: 1 2 3
