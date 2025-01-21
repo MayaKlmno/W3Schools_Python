@@ -44,4 +44,23 @@ PARAMETERS OR ARGUMENTS:
 from a functions perspective:
     - a parameter is the variable listed inside the parentheses in the function definition
     - an argument is the value that is sent to the function when it is called 
+
+NUMBER OF ARGUMENTS:
+- By default a funciton must be called with the correct number of arguments.
+  Meaning, that if your function expects 2 arguments, you have to call the function
+  with 2 arguments.
 '''
+# example: (this function expects 2 arguments, thus gets 2 arguments)
+def my_function2(fname, lname):
+  print(fname + " " + lname)
+my_function2("Dean", "Redding")
+  # if you try to call the function with 1 or 3 arguments you will get an error
+
+'''
+ARBITRARY ARGUMENTS, *args
+- If you do not know how many arguments that will be passed into your function,
+  add a * before the parameter name in the function definition
+- This way the function will receive a tupe of arguments, and can access
+  the items accordingly
+'''
+# example: (if the number of arguments is unknown )
