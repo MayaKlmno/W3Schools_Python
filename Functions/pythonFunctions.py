@@ -63,4 +63,29 @@ ARBITRARY ARGUMENTS, *args
 - This way the function will receive a tupe of arguments, and can access
   the items accordingly
 '''
-# example: (if the number of arguments is unknown )
+# example: (if the number of arguments is unknown, add a * before the parameter name:)
+def another_function(*kids):
+  print("The youngest child is " + kids[2])
+another_function("Dean", "Jameson", "arron")  
+  # arbitrary arguments are often shortened to *args in Python documentations
+
+'''
+KEYWORD ARGUMENTS:
+- You can also send arguments with the key = value syntax
+- This way the order of the arguments does not matter
+'''
+# example:
+def example_function(child3, child2, child1):
+  print("The youngest child is " + child3)
+example_function(child3="dean", child2="jameson", child1="aaron")
+  # the phrase Keyword Arguments are often shortened to kwargs in Python
+
+'''
+ARBITRARY KEYWORD ARGUMENTS **kwargs
+- if you do not know how many keyword arguments that will be passed
+  into your function, add two asterisk: ** before the parameter name
+  in the function definition
+- this way the function will receive a dictionary of arguments and can
+  acces the items accordingly
+'''
+# example: (if the number)
