@@ -88,4 +88,8 @@ ARBITRARY KEYWORD ARGUMENTS **kwargs
 - this way the function will receive a dictionary of arguments and can
   acces the items accordingly
 '''
-# example: (if the number)
+# example: (if the number of keyword arguments is unknown, add a double **
+#   before the parameter name)
+def here_function(**kid):
+  print("His last name is " + kid[lname])
+here_function(fname = "Jameson", lname = "Hawthorne")
