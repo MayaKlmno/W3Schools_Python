@@ -93,3 +93,33 @@ ARBITRARY KEYWORD ARGUMENTS **kwargs
 def here_function(**kid):
   print("His last name is " + kid[lname])
 here_function(fname = "Jameson", lname = "Hawthorne")
+  # arbitrary Kword arguments are often shortened to **kwargs in python
+  # documentations
+  
+'''
+DEFAULT PARAMETER VALUE
+- The following example shows how to use a default parameter value
+- if we call the function without argument, it uses the default value
+'''
+# example:
+def hi(country = "England"):
+  print("I am from " + country)
+hi("Sweeden")
+hi("Romania")
+hi()
+hi("France")
+
+'''
+PASSING A LIST AS AN ARGUMENT:
+- You can send any data types of argument to a function (string,
+  number, list, dictionary, etc.)
+  and it will be treated as the same data type inside the function
+- eg: if you send a list as an argument, it will still be a List when
+  reaches the function
+'''
+# example:
+def hello(food):
+  for x in food:
+    print(x)
+fruits = ["apple", "banana", "cherry"]
+hello(fruits)
