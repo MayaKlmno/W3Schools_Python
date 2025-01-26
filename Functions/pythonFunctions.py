@@ -123,3 +123,26 @@ def hello(food):
     print(x)
 fruits = ["apple", "banana", "cherry"]
 hello(fruits)
+
+'''
+RETURN VALUES:
+- to let a function return a value, use the return statement
+'''
+# example: 
+def function(x):
+  return 5*x
+print(function(3))
+print(function(5))
+print(function(9))
+
+'''
+THE PASS STATEMENT:
+- functioon definitions cannot be empty, but if you for some reason
+  have a function definition with no content, put in the pass statement
+  to avaoid getting an error
+'''
+# example:
+def hey():
+  pass
+'''
+'''
