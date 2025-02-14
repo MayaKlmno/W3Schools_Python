@@ -144,5 +144,44 @@ THE PASS STATEMENT:
 # example:
 def hey():
   pass
+
 '''
+POSITIONAL-ONLY ARGUMENTS:
+- You can specify that a function can have ONLY positional arguments or ONLY keyword
+  arguments
+- To specify that a function can have only positional arguments, add , / after the 
+  arguments 
+'''
+# example
+def my_function(x, /):
+  print(x)
+my_function(3)
+
+# Without the , / you are actually allowed to use keyword arguments even if
+# the function expects positional arguments
+# example
+def here(x):
+  print(x)
+here(x=3)
+
+# But when adding the , / you will get an error if you try to send a keyword argument:
+'''
+# wrong
+def my_function(x, /):
+  print(x)
+my_function(x=3)
+'''
+
+'''
+KEYWORD-ONLY ARGUMENTS:
+- To specify that a function can have only keyword arguments, add *, before the arguments
+'''
+# example
+def you(*, x):
+  print(x)
+you(x=3)
+
+'''
+- without the *, you are allowed to use positionale arguments even if the function expects
+  keyword arguments
 '''
