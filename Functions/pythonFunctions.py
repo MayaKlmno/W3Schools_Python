@@ -174,14 +174,69 @@ my_function(x=3)
 
 '''
 KEYWORD-ONLY ARGUMENTS:
-- To specify that a function can have only keyword arguments, add *, before the arguments
+To specify that a function can have only keyword arguments, add *, before the arguments:
 '''
-# example
-def you(*, x):
+#Example
+def my_function3(*,x):
   print(x)
-you(x=3)
+my_function3(x=3) ### must put x =    or else you would get an error
+'''
+Without the *, you are allowed to use positional arguments even if the function expects
+keyword arguments
+'''
+#Example:
+def my_function4(x):
+  print(x)
+my_function4(3)
+
+##!! BUT with the *, you will get an error if you try to send a positional argument:
 
 '''
-- without the *, you are allowed to use positionale arguments even if the function expects
-  keyword arguments
+COMBINE POSITIONAL-ONLY AND KEYWORD-ONLY:
+You can combine the two argument types in the same function.
+Any argument before the / , are positional-only, and any argument after the *, are keyword only
+'''
+#Example:
+def my_function5(a,b, /, *, c,d):
+  print(a+b+c+d)
+my_function5(5,6,c=7, d=8)
+
+'''
+RECURSION:
+Python also accepts function recursion, which means a defined function can call itself.
+
+Recursion is a common mathematical and programming concept. It means that a function calls itself.
+This has the benefit of meaning that you can loop through data to reach a result.
+
+The developer should be very careful with recursion as it can be quite easy to slip into writing a 
+function that never terminates, or one that uses excess amounts of memory or processor power.
+However, when written correctly recursion can be a very efficient and mathematically-elegent way
+to approach to programming.
+
+In this example, tri_recursion() is a function that we have defnined to call itself ("recurse").
+We use the k variable as the data, which decrements (-1) every time we recurse. The recursion ends when
+the condition is not greater than 0 (i.e. when it is 0)
+
+To a new developer it can take4 some time to work out how exactly this works, best way to find out is 
+by testing and modifying it.
+'''
+#Example:
+def tri_recursion(k):
+  if(k>0):
+    result = k + tri_recursion(k-1)
+    print(result)
+  else:
+    result = 0
+  return result
+print("Recursion Example Results:")
+tri_recursion(6)
+'''
+  The result:
+    Recursion Example Results:
+    1
+    3
+    6
+    10
+    15
+    21
 '''
