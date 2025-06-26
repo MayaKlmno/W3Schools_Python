@@ -44,3 +44,27 @@ def myfunc2(n):
 mydoubler = myfunc(2)
 print(mydoubler(11))
 
+# or, use the same function defenition to make a function that
+# always triples the number you send in:
+def myfunc2(n):
+    return lambda a : a * n
+mytripler = myfunc2(3)
+print(mytripler(11))
+
+# or, use the same function defenition to make both functions,
+# in the same program. 
+def myfunction(n):
+    return lambda a : a * n
+mydoubler1 = myfunction(2)
+mytripler1 = myfunction(3)
+print(mydoubler1(11))
+print(mytripler1(11))
+
+'''
+Use lambda function when an anonymouos function is 
+required for a short period of time. 
+'''
+
+'''
+Lambda can take multiple argument, but cannot have multiple expressions
+'''
