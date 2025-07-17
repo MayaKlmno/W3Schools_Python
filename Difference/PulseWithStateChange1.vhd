@@ -1,0 +1,164 @@
+-----------------------------------------------------
+--
+-- Implementation of a particular waveform.
+-- trigger arrives on InputA and the AWG is out on OutputA
+-- vtop : voltage step needed to reach Vtop (amplitude) in "rise" steps.
+
+-- This has 3 processes, 
+   -- 1: for outputA
+   -- 2: for outputB
+   -- 3: for the trigger_flag
+-- the outputB should happen right after OutputA, like piggyback, chasing after eachother
+ 
+------------------------------------------------------
+
+library IEEE;
+use IEEE.Std_Logic_1164.all;
+
+use IEEE.Numeric_Std.all;
+
+--library Moku;
+--use Moku.Support.sum_no_overflow;
+ENTITY CustomWrapper IS
+	PORT(
+    	clk: IN STD_LOGIC;
+        reset: IN STD_LOGIC;
+        InputA: IN signed(15 downto 0);
+        Control0: IN signed(15 downto 0);
+        Control1: IN signed(15 downto 0);
+        Control2: IN signed(15 downto 0);
+        Control3: IN signed(15 downto 0);
+        Control4: IN signed(15 downto 0);
+        OutputA: OUT signed(15 downto 0);
+        OUtputB: OUT signed(15 downto 0)
+        );
+END CustomWrapper;
+
+architecture Behavioural of CustomWrapper is
+type state_type is (state_Idle, state_vBottom, state_vTop, state_vBottom2);
+    signal state: state_type;
+    signal nextState: state_type := state_Idle;
+   
+
+     --zero until a trigger signal comes to inputA when it's raised to 1.
+     signal trigger_flag: std_logic ;
+
+     -- originally intended for unsigned on 16 bits, to be read from outside Controls, but doesn't work for Synthesizing.
+     -- in this example, 20 clock units x 3.25ns = 65 ns
+
+
+      -- DONT THINK I NEED NEXT 4 LINES ANYMORE
+     signal bottomMaxCount : signed(15 downto 0);
+     signal topMaxCount : signed(15 downto 0);
+     signal delay2MaxCount : signed(15 downto 0);
+     
+     -- end definition of time intervals
+
+     signal index : signed(15 downto 0);  -- your index
+     --signal index_signal : unsigned(15 downto 0);
+     signal counterUpDown : integer := 0; -- this counts to see if it is up or down
+
+     -- Probably don't need this anymore, cause of step
+     signal vTop : signed(15 downto 0); -- how much voltage goes up per step -- not supposed to be per step, supposed to go straight to 1 and 0
+     signal vBottom : signed(15 downto 0); -- this is the voltage during the delay state
+     signal threshold : signed(15 downto 0); --threshold to detect a trigger pulse on InputA
+     -- ex: vtop = 512 (~16mV) , vl1=vl2=256 (~8mV), offset = 0, threshold = 2048 (~65mV)
+
+
+begin
+
+     -- Change, not steps
+     vTop <= signed(Control0(15 downto 0));
+     vBottom <= signed(Control1(15 downto 0));
+     threshold <= signed(Control2(15 downto 0));
+     bottomMaxCount <= signed(Control3(15 downto 0));
+     topMaxCount <= signed(Control4(15 downto 0));
+
+-- Process to define and update the waveform
+     process(clk, state)
+     variable voltage : signed(15 downto 0);
+     begin
+       if rising_edge(clk) then
+         case state is
+          when state_Idle =>
+            voltage := (others => '0');
+                index <= X"0000";
+                if trigger_flag = '1' then
+                nextState <= state_vBottom;
+                    -- OC
+                else
+                nextState <= state_Idle;
+                    -- OC
+                end if;
+          when state_vBottom =>
+                voltage := vBottom;
+                if index < bottomMaxCount then
+                nextState <= state_vBottom;
+                    index <= index + 1;
+                    --OutputC <= X"74E5"; --1V
+                else
+                nextState <= state_vTop;
+                    index <= X"0000";
+                    --OutputC <= X"57AC"; --0.75V
+                end if;
+               
+            when state_vTop =>
+            -- the voltage + vRise means that for each step it goes up by a bit
+                  -- removed the voltage +
+               
+            if index(0) = '1' then --true if odd, false if even
+                voltage := vTop;
+                else
+                voltage := vBottom + vBottom;
+                end if;
+               
+                if index < topMaxCount then
+                nextState <= state_vTop;
+                    index <= index + 1;
+                    --OutputB <= X"5D84"; --0.8V
+                else
+                    nextState <= state_Idle; --state_vBottom2;
+                    index <= X"0000";
+                    --OutputB <= X"6934"; --0.9V
+                end if;
+               
+               
+          -- when state_vBottom2 =>
+          -- voltage := vBottom;
+          --      if trigger_flag = '0' then
+          --       nextState <= state_Idle;
+         --            OutputB <= X"5D84"; --0.8V
+         --       else
+          --       nextState <= state_vBottom2;
+          --          OutputB <= X"6934"; --0.9V
+          --      end if;
+ 
+               
+           when others =>
+            voltage := (others => '0');
+                nextState <= state_Idle;
+               
+        end case;
+         OutputA <= voltage;
+         --state <= nextState;
+       end if;
+     end process;
+
+-- Process to check InputA against Threshold and activate trigger flag
+     process(clk, reset, InputA)
+     begin
+       if reset = '1' then
+        state <= state_Idle;
+         trigger_flag <= '0';
+       elsif falling_edge(clk) then
+        state <= nextState;
+         
+         if InputA > threshold then
+           trigger_flag <= '1';
+         else trigger_flag <= '0';
+         end if;
+       end if;
+     end process;
+
+end Behavioural;
+------------------------------------------------------------------------------
